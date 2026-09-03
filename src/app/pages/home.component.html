@@ -1,0 +1,45 @@
+<section class="hero">
+    <div class="wrap hero-in">
+        <div class="eyebrow">⚡ Fast • Free • Private</div>
+        <h1>Everyday calculations,<br><span>made simple.</span></h1>
+        <p>Useful online tools for students, professionals, families and shopkeepers.</p>
+        <div class="search"><span>⌕</span><input [(ngModel)]="query" placeholder="What do you want to calculate?"></div>
+        <div class="chips"><a *ngFor="let t of tools.slice(0,5)" [routerLink]="t.path">{{t.name.replace(' Calculator','')}}</a></div>
+    </div>
+</section>
+<section class="section wrap" id="categories">
+    <div class="section-head">
+        <div>
+            <div class="kicker">BROWSE</div>
+            <h2>Tools for everyone</h2>
+        </div><span>10 useful tools to start</span>
+    </div>
+    <div class="cat-grid"><a class="cat" *ngFor="let c of categories" href="#popular">
+            <div class="cat-icon">{{c[0]}}</div>
+            <div>
+                <h3>{{c[1]}}</h3>
+                <p>{{c[2]}}</p>
+            </div><b>→</b>
+        </a></div>
+</section>
+<section class="section wrap" id="popular">
+    <div class="section-head">
+        <div>
+            <div class="kicker">POPULAR TOOLS</div>
+            <h2>Start calculating</h2>
+        </div>
+    </div>
+    <div class="tool-grid"><a class="tool" *ngFor="let t of filtered" [routerLink]="t.path">
+            <div class="tool-icon">{{t.icon}}</div>
+            <div class="tool-body">
+                <h3>{{t.name}}</h3>
+                <p>{{t.desc}}</p><small>{{t.cat}}</small>
+            </div><b>→</b>
+        </a></div>
+    <div class="empty" *ngIf="!filtered.length">No tool found. Try “EMI”, “GST”, “salary” or “percentage”.</div>
+</section>
+<section class="trust">
+    <div class="wrap trust-in">
+        <div><strong>🔒 Your data stays with you.</strong><span>No account. No database. No saved calculations.</span></div><span class="badge">100% browser-based</span>
+    </div>
+</section>

@@ -1,0 +1,36 @@
+<section class="calc-page">
+    <div class="wrap"><a class="back" routerLink="/">← Back to all tools</a>
+        <div class="calc-layout">
+            <div class="calc-form">
+                <div class="kicker">ONLINE CALCULATOR</div>
+                <h1>{{c.title}}</h1>
+                <p class="lead">{{c.sub}}</p>
+                <div class="fields"><label *ngFor="let f of c.fields"><span>{{f[1]}}</span><input *ngIf="f[0] !== 'dob' && f[0] !== 'type'" [(ngModel)]="inputs[f[0]]" type="number" inputmode="decimal"><input *ngIf="f[0] === 'dob'" [(ngModel)]="inputs[f[0]]" type="date"><select *ngIf="f[0] === 'type'" [(ngModel)]="inputs[f[0]]">
+                            <option value="km-m">Kilometer → Meter</option>
+                            <option value="m-km">Meter → Kilometer</option>
+                        </select></label></div>
+                <div class="actions"><button class="primary" (click)="calculate()">Calculate</button><button class="secondary" (click)="reset()">Reset</button></div>
+                <div class="error" *ngIf="error">{{error}}</div>
+            </div>
+            <div class="result-wrap">
+                <div class="result" *ngIf="result;else empty">
+                    <div class="result-label">YOUR RESULT</div>
+                    <div class="result-main">{{result.main}}</div>
+                    <div class="result-sub">{{result.label}}</div>
+                    <div class="rows">
+                        <div *ngFor="let r of result.rows"><span>{{r[0]}}</span><strong>{{r[1]}}</strong></div>
+                    </div>
+                    <div class="result-actions"><button (click)="copy()">📋 Copy</button><button (click)="share()">↗ Share</button></div>
+                </div>
+                <ng-template #empty>
+                    <div class="empty-result">
+                        <div>🧮</div>
+                        <h3>Your result will appear here</h3>
+                        <p>Enter the values and tap Calculate.</p>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="note">🔒 No login and no saved data. This calculation runs in your browser.</div>
+    </div>
+</section>
